@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rancher-demo
+  labels:
+    app: rancher-demo
+spec:
+  selector:
+    matchLabels:
+      app: rancher-demo-ghaith
+  strategy:
+    type: Recreate
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: rancher-demo-ghaith
+    spec:
+      containers:
+        - image: epsdevops/rancher-demo:latest
+          name: rancher-demo
+          ports:
+            - containerPort: 8080
+              name: demo-http
